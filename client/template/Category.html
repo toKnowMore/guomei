@@ -1,0 +1,21 @@
+<div>
+    <div class="cateHeader">
+        <a href="" onclick="javascript:history.back()">
+            <img src="img/分类.左箭头.png" alt="" class="cateArrows" >
+        </a>
+        <input type="text" class="cateInput" placeholder=" 搜索商品">
+        <button class="cateButton">搜索</button>
+    </div>
+    <div class="cateContent">
+        <div class="cateLdiv">
+            <ul class="cateUl">
+                <li ng-click="getProductBySort('一键选酒')">一键选酒</li></a>
+                <li ng-repeat="x in products | unique" ng-bind="x" ng-click="getProductBySort(x)"></li>
+            </ul>
+        </div>
+        <div class="col-xs-9 pull-right">
+            <a href="template/search.html"><li ng-repeat="x in selectedPros" ng-bind="x.name"></li></a>
+        </div>
+    </div>
+    <div ui-view></div>
+</div>

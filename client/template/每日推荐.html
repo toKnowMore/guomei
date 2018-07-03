@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>每日推荐</title>
+    <meta name="viewport"  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_418111_qxxq6ou219n3ik9.css">
+    <style>
+        html,body {
+            width: 100%;
+            height: 100%;
+        }
+        .tuijian {
+            width: 100%;
+            height: 100%;
+        }
+        .tuijian-head {
+            height: 8%;
+            width: 100%;
+            background-color: rgb(242,242,242);
+        }
+        .tuijian-head p {
+            display: inline-block;
+            font-size: 1.8rem;
+            padding-left: 30%;
+        }
+        .tuijian-head .icon-zuoyoujiantou {
+            width: 10%;
+            padding: 5% 0 0 5%;
+            font-size: 2rem;
+            line-height: 4rem;
+        }
+        .tuijian-head img {
+            padding: 3% 6% 0 0;
+            height: 80%;
+            width: 10%;
+        }
+        .back-hid {
+            display: none;
+            width: 60%;
+            position: absolute;
+            right:-30%;
+            top:10%;
+        }
+        .back-hid img {
+            width: 50%;
+        }
+        .tuijian-neck {
+            width: 100%;
+        }
+        .tuijian-neck img {
+            width: 30%;
+        }
+        .tuijian-person {
+            width: 70%;
+            float: right;
+            margin-top: 5%;
+        }
+        .tuijian-person p {
+            font-size: 2rem;
+        }
+        .tuijian-person p:nth-child(1) {
+            padding-top: 3%;
+        }
+        .tuijian-person p .text {
+            font-size: 1.6rem;
+            color: darkgray;
+        }
+        .tuijian-deal {
+            width: 100%;
+            height: 10%;
+            border-bottom: 1px solid gainsboro;
+            overflow: hidden;
+        }
+        .tuijian-deal div {
+            float: left;
+            width: 25%;
+            text-align: center;
+        }
+        .tuijian-deal div p {
+            font-size: 1.8rem;
+        }
+        .tuijian-content .contentson {
+            width: 100%;
+        }
+        .contentson {
+            width: 100%;
+            overflow: hidden;
+        }
+        .contentson img {
+            width: 25%;
+            float: left;
+        }
+        .content-one img:nth-child(1) {
+            margin-top: 2%;
+        }
+        .navbar {
+            width: 100%;
+            height: 10%;
+        }
+        .navbar .container {
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0;
+        }
+        .navbar .container .iconfont {
+            padding: 3% 6%;
+            font-size: 2.7rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="tuijian">
+        <div class="tuijian-head" >
+            <i class="iconfont icon-zuoyoujiantou" onclick="javascript:history.back()"></i>
+            <p>每日推荐</p>
+            <img src="../image/backline.png" alt="" class="pull-right back-line">
+        </div>
+        <div class="back-hid">
+            <img src="../image/hid-home_03.png" alt="">
+            <img src="../image/hid-fenlei_03.png" alt="">
+            <img src="../image/hid-shopcart_03.png" alt="">
+            <img src="../image/hid-me_03.png" alt="">
+        </div>
+        <div class="tuijian-neck">
+            <img src="../image/touxiang_03.png" alt="" >
+            <div class="tuijian-person">
+                <p>
+                    <span>dazui200007</span>
+                    <img src="../image/buyi.png" alt="">
+                </p>
+                <p>
+                    <span class="text">余额:</span>
+                    <span>¥158.00</span>
+                    <span class="text">积分:</span>
+                    <span>42</span>
+                </p>
+            </div>
+            <div class="tuijian-deal">
+                <div>
+                    <p>0</p>
+                    <p>待支付</p>
+                </div>
+                <div>
+                    <p>0</p>
+                    <p>代发货</p>
+                </div>
+                <div>
+                    <p>0</p>
+                    <p>待收货</p>
+                </div>
+                <div>
+                    <p>2</p>
+                    <p>待评价</p>
+                </div>
+            </div>
+            <div class="tuijian-content">
+                <div class="contentson content-one">
+                    <img src="../image/tuijian-order_04.png" alt="">
+                    <img src="../image/youhuiquan_03.png" alt="">
+                    <img src="../image/jifen_03.png" alt="">
+                    <img src="../image/tuijian-meiyingbao_03.png" alt="">
+                </div>
+                <div class="contentson content-two">
+                    <img src="../image/tuijian-zhanghu_03.png" alt="">
+                    <img src="../image/tuijian-shopcart_03.png" alt="">
+                    <img src="../image/tuijian-shouhou_03.png" alt="">
+                    <img src="../image/tuijian-shoucang_03.png" alt="">
+                </div>
+                <div class="contentson content-three">
+                    <img src="../image/tuijian-yuyue_03.png" alt="">
+                    <img src="../image/tuijian-fengxaing_03.png" alt="">
+                    <img src="../image/tuijian-shouhou_03.png" alt="">
+                    <img src="../image/tuijian-history_03.png" alt="">
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container">
+                <i class="iconfont icon-zuoyoujiantou"></i>
+                <i class="iconfont icon-you"></i>
+                <i class="iconfont icon-fenxiang1"></i>
+                <i class="iconfont icon-shuben"></i>
+                <i class="iconfont icon-icon_duorenwu"></i>
+            </div>
+        </nav>
+    </div>
+</body>
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    var temp = true;
+    $(".back-line").click(function () {
+        if(temp){
+            $(".back-hid").css("display", "block");
+            temp = false;
+        }else {
+            $(".back-hid").css("display", "none");
+            temp = true;
+        }
+    });
+
+    $(".back-hid img").eq(0).click(function () {
+        window.location.href = "../index.html";
+    });
+
+    $(".back-hid img").eq(1).click(function () {
+        window.location.href = "../index.html";
+    });
+    $(".back-hid img").eq(2).click(function () {
+        window.location.href = "shoppingCart.html";
+    });
+    $(".back-hid img").eq(3).click(function () {
+        window.location.href = "../setPw.html";
+    });
+</script>

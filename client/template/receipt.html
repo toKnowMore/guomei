@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>发票</title>
+    <link rel="stylesheet" href="../css/basebetter.css">
+</head>
+<body>
+    <div class="Receipt">
+        <div class="NewpeiHeader">
+            <a href="###" onclick="javascript:history.back()">
+                <img src="../img/分类.左箭头.png"  class="NewpeiArrows"></a>
+            <span class="NewpeiSpan">发票信息</span>
+        </div>
+        <div class="ReceContent">
+            <div class="ReceInfo ">
+                <p class="ReceP">发票信息</p>
+                <p class="ReceBord">需要发票</p>
+                <p class="ReceBord">暂不需要发票</p>
+            </div>
+            <div class="ReceMethod">
+                <p class="ReceP">发票类型</p>
+                <p class="ReceBord">普通纸质发票</p>
+            </div>
+            <div class="ReceTitle">
+                <p>发票抬头</p>
+                <input type="radio" name="title"><span>个人</span><br>
+                <input type="radio" name="title"><span>单位</span><input type="text" placeholder="请输入单位名称">
+            </div>
+            <div class="Rececont">
+                <p class="ReceP">发票内容</p>
+                <p class="ReceChose">选择项目:</p>
+                <p class="ReceBord">明细</p>
+                <p class="ReceBord">酒</p>
+                <p>由店铺决定,发票由店铺开局并寄出</p>
+            </div>
+        </div>
+        <div class="ReceFoot">
+            <button class="shopMethodBtn">确定</button>
+        </div>
+    </div>
+</body>
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(".ReceInfo .ReceBord").click(function () {
+        $(".ReceInfo .ReceBord").each(function (i,e) {
+            $(e).css("borderColor", "gray");
+        })
+        $(this).css("borderColor", "red");
+        if($(this).text() == "暂不需要发票"){
+            $(".ReceMethod").css("display", "none");
+            $(".ReceTitle").css("display", "none");
+            $(".Rececont").css("display", "none");
+        }else {
+            $(".ReceMethod").css("display", "block");
+            $(".ReceTitle").css("display", "block");
+            $(".Rececont").css("display", "block");
+            localStorage.setItem("receBord", $(this).text());
+            console.log($(this).text());
+        }
+    })
+
+    $(".ReceMethod .ReceBord").click(function () {
+        $(this).css("borderColor", "red");
+        localStorage.setItem("receType", $(this).text());
+        console.log($(this).text());
+    })
+
+    $(".Rececont .ReceBord").click(function () {
+        $(".Rececont .ReceBord").each(function (i,e) {
+            $(e).css("borderColor", "gray");
+        })
+        $(this).css("borderColor", "red");
+        localStorage.setItem("receTopic", $(this).text());
+    })
+    $(".shopMethodBtn").click(function () {
+        window.location.href = "order.html";
+    })
+
+</script>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>收货地址管理</title>
+    <link rel="stylesheet" href="../css/basebetter.css">
+</head>
+<body onload="load()">
+<div class="PeiPt">
+    <div class="peiptHeader">
+        <a href="###" onclick="location:history.back()">
+            <img src="../img/分类.左箭头.png" alt="" class="peiptArrows">
+        </a>
+        <span class="peiptSpan">收货地址</span>
+    </div>
+    <div class="peiptcontent">
+    </div>
+    <div class="peiptfoot">
+        <a href="NewPeipt.html">
+            <button class="peiptButton">新增地址</button>
+        </a>
+    </div>
+</div>
+<div class="NewPeipt">
+    <div class="NewpeiHeader">
+        <a href="###">
+            <img src="../img/分类.左箭头.png" class="NewpeiArrows" >
+        </a>
+        <span class="NewpeiSpan">编辑收货地址</span>
+    </div>
+    <div class="NewpeiContent">
+        <ul class="NewpeiUl" >
+            <li>收货人:<input type="text" name="name"></li>
+            <li>手机号码:<input type="text" name="phoneNumber"></li>
+            <li>选择地区:<input type="text" name="bigArea"></li>
+            <li>详细地址:<input type="text" name="smallArea"></li>
+        </ul>
+    </div>
+    <div class="NewpeiFoot">
+        <button >保存</button>
+    </div>
+</div>
+</body>
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    function load() {
+        //点击收货地址管理,获取数据库中所有数据
+        $.ajax({
+            type:"get",
+            async:false,
+            url:"http://127.0.0.1:4567/getAddress",
+            dataType:"jsonp",
+            jsonp:"callback",
+            success:function (result) {
+                console.log(result)
+                for (var  j = 0; j < result.length; j++){
+                    for (var k = 0; k < result[j].address.length; k++){
+                        var d = $("<div>").addClass("consumer").appendTo($(".peiptcontent"));
+                        $("<input>").addClass("peiptCircle").attr({"type":"radio","name":"sure"}).appendTo($(d));
+                        $("<span>").addClass("conSpan1").text(result[j].name).appendTo($(d));
+                        $("<span>").addClass("conSpan2").text(result[j].phoneNumber).appendTo($(d));
+                        $("<p>").addClass("conP1").text(result[j].address[k].address).appendTo($(d));
+                        $("<button>").addClass("conP2").text("编辑").appendTo($(d));
+                        $("<button>").addClass("del").text("删除").appendTo($(d));
+                    }
+                }
+
+                //点击按钮,确认地址
+                $("input").each(function (i,e) {
+                    $(this).click(function () {
+                        localStorage.setItem("info", $(".conP1").text());
+                    })
+                })
+
+
+                $(".conP2").click(function () {
+                    $(".conP2").each(function (i,e) {
+                        $(".PeiPt").css("display", "none");
+                        $(".NewPeipt").css("display", "block");
+                    });
+
+            //点击时获取所点击的具体数据
+            if(!window.localStorage){
+                alert("浏览器支持");
+            }else {
+                var storage = window.localStorage;
+                //写入字段
+                storage.setItem("name", $(this).parent().children().eq(1).text());
+                storage.setItem("phoneNumber", $(this).parent().children().eq(2).text());
+                storage.setItem("bigArea", $(this).parent().children().eq(3).text());
+
+            }
+                $(".NewpeiUl li input").eq(0).val(storage.getItem("name"));
+                $(".NewpeiUl li input").eq(1).val(storage.getItem("phoneNumber"));
+                $(".NewpeiUl li input").eq(2).val(storage.getItem("bigArea"));
+
+                });
+                //删除
+                $(".del").each(function (i, e) {
+                    $(e).click(function () {
+//                        //点击时获取所点击的具体数据
+                        if(!window.localStorage){
+                            alert("浏览器支持");
+                        }else {
+                            var storage = window.localStorage;
+                            //写入字段
+                            storage.setItem("name", $(this).parent().children().eq(1).text());
+                            storage.setItem("phoneNumber", $(this).parent().children().eq(2).text());
+                            storage.setItem("bigArea", $(this).parent().children().eq(3).text());
+                        }
+                        console.log(storage);
+                        console.log(storage.getItem("bigArea"));
+                        //不能删除只能更新,保留其他数据
+                        $.get("http://127.0.0.1:4657/shanchu", {
+                            address:storage.getItem("bigArea")
+                        }, function (data) {
+                            console.log(data);
+                        }, "json");
+//                        $.ajax({
+//                            type:"get",
+//                            async:false,
+//                            url:"http://127.0.0.1:4657/shanchu",
+//                            dataType:"jsonp",
+//                            data:{
+//                                address:storage.getItem("bigArea")
+//                            },
+//                            jsonp:"callback",
+//                            success:function (result) {
+//                            console.log(result);
+//                                if(result){
+//                                    $(this).parent().remove();
+//                                }
+//                            }
+//                        });
+                    });
+                });
+
+                $(".NewpeiArrows").click(function () {
+                    $(".PeiPt").css("display", "block");
+                    $(".NewPeipt").css("display", "none");
+                });
+            }
+       });
+    }
+</script>
+

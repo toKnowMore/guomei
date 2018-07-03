@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>新增收货地址</title>
+    <link rel="stylesheet" href="../css/basebetter.css">
+</head>
+<body>
+<div class="AddNewPeipt">
+    <div class="NewpeiHeader">
+        <a href="###" onclick="javascript:history.back()">
+            <img src="../img/分类.左箭头.png" class="NewpeiArrows" >
+        </a>
+        <span class="NewpeiSpan">新增收货地址</span>
+    </div>
+    <div class="NewpeiContent">
+        <ul class="NewpeiUl" >
+            <form>
+                <li>收货人:<input type="text"></li>
+                <li>手机号码:<input type="text"></li>
+                <li>选择地区:<input type="text"></li>
+                <li>详细地址:<input type="text"></li>
+                <div class="NewpeiFoot">
+                    <input type="button" value="保存" class="submit">
+                </div>
+            </form>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    
+    //点击保存
+    $(".submit").click(function () {
+
+        $.ajax({
+            type:"get",
+            async:false,
+            url:"http://127.0.0.1:4567/add",
+            dataType:"jsonp",
+            jsonp:"callback",
+            data:{
+                name:"张三",
+                phoneNumber:$("input").eq(1).val(),
+                bigArea:$("input").eq(2).val(),
+                smallArea:$("input").eq(3).val()
+            },
+            success:function (result) {
+                window.location.href = "REIPT.html";
+            }
+        });
+    })
+    
+</script>

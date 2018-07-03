@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <meta name="viewport"  
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_418111_qxxq6ou219n3ik9.css">
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #shopcart-container {
+            width: 100%;
+            height: 100%;
+            background-color: rgb(244, 244, 244);
+        }
+
+        .shopcart-head {
+            width: 100%;
+            height: 8%;
+            background-color: rgb(242, 242, 242);
+            border-bottom: 2px solid;
+            border-color: gainsboro;
+        }
+
+        .shopcart-head .icon-zuoyoujiantou {
+            font-size: 2.4rem;
+            padding-left: 3%;
+            padding-top: 3%;
+        }
+
+        .shopcart-head p {
+            margin-top: 4%;
+            width: 80%;
+            padding-right: 25%;
+            float: right;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .shopcart-select {
+            width: 100%;
+        }
+
+        .caozuo {
+            width: 100%;
+            height: 50px;
+            background-color: white;
+        }
+
+        .caozuo .shopname {
+            padding: 3% 0 0 5%;
+            font-size: 1.7rem;
+            font-weight: 200;
+        }
+
+        .caozuo .bianji {
+            padding: 3% 5% 0 0;
+            font-size: 1.6rem;
+            font-weight: 200;
+        }
+
+        .caozuo input {
+            margin: 2% 0 0 5%;
+            width: 2rem;
+            height: 3rem;
+        }
+
+        .shopcart-select .list-group {
+            background-color: gray;
+        }
+
+        .shopcart-select .list-group .list-group-item {
+            background-color: rgb(244, 244, 244);
+            overflow: hidden;
+        }
+
+        .caozuo p {
+            color: #000;
+        }
+
+        .shopcart-select .list-group .list-group-item img {
+            width: 30%;
+            float: left;
+        }
+
+        .shopcart-select .list-group .list-group-item .describe {
+            width: 40%;
+            margin: 0;
+        }
+
+        .bianjiAdd {
+            width: 20%;
+            float: right;
+            padding-right: 5%;
+        }
+
+        .bianjiAdd .iconfont {
+            padding-right: 10%;
+        }
+
+        .list-group-item .price {
+            color: red;
+        }
+
+        .list-group-item input {
+            width: 15%;
+            border: 1px solid;
+            opacity: 0.7;
+            display: inline-block;
+            padding: 10% 0 0 6%;
+        }
+
+        .end {
+            width: 100%;
+            height: 20%;
+        }
+
+        .end p {
+            margin: auto;
+            width: 50%;
+            border: 1px solid orange;
+            text-align: center;
+            padding: 5% 10%;
+        }
+
+        .navbar {
+            width: 100%;
+            height: 10%;
+            z-index: 10;
+        }
+
+        .navbar .container {
+            width: 100%;
+            height: 100%;
+            padding-right: 0;
+        }
+
+        .navbar .container input {
+            width: 2rem;
+            height: 3rem;
+        }
+
+        .navbar .container p {
+            width: 50%;
+            margin: 0;
+            font-size: 1.5rem;
+            padding-top: 2%;
+        }
+
+        .navbar .container .set {
+            width: 30%;
+            height: 100%;
+            background-color: orangered;
+        }
+
+        .navbar .container .set p {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            color: white;
+            font-size: 2rem;
+            line-height: 3rem;
+            padding: 10% 0 0 30%;
+            font-weight: 100;
+        }
+
+        .navbar .container .youhui {
+            width: 40%;
+        }
+
+        .all-choose {
+            padding: 5% 0 0 2%;
+        }
+    </style>
+</head>
+<body onload="load()">
+<div id="shopcart-container">
+    <div class="shopcart-head">
+        <a href="###" onclick="javascript:history.back()">
+            <i class="iconfont icon-zuoyoujiantou pull-left"></i>
+        </a>
+        <p>购物车</p>
+    </div>
+    <div class="shopcart-select">
+        <!--<div class="shopcart-select-one">-->
+            <!--<div class="caozuo">-->
+                <!--<input type="checkbox" class="pull-left checkbox">-->
+                <!--<p class="shopname pull-left">自营店</p>-->
+                <!--<p class="pull-right bianji">编辑</p>-->
+            <!--</div>-->
+            <!--<ul class="list-group">-->
+                <!--<li class="list-group-item">-->
+                    <!--<input type="checkbox" class="pull-left checkbox">-->
+                    <!--<img src="../image/shopbig_07.png" alt="">-->
+                    <!--<p class="pull-right describe">超牛逼红酒,法国原装进口珍藏多年,波尔多AOC红葡萄酒整箱6支装....</p>-->
+                    <!--<select name="shop-cart-number" class="pull-right">-->
+                        <!--<option value="1">1</option>-->
+                        <!--<option value="2">2</option>-->
+                        <!--<option value="3">3</option>-->
+                    <!--</select>-->
+                    <!--<p class="price pull-left">¥<span>299.00</span></p>-->
+                    <!--<p class="bianjiAdd">-->
+                        <!--<i class="iconfont icon-iconfontsvg14"></i>-->
+                        <!--<i class="iconfont icon-lajixiang"></i>-->
+                    <!--</p>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <!--<div class="shopcart-select-two">-->
+            <!--<div class="caozuo">-->
+                <!--<input type="checkbox" class="pull-left">-->
+                <!--<p class="shopname pull-left">张裕旗舰店</p>-->
+                <!--<p class="pull-right bianji">编辑</p>-->
+            <!--</div>-->
+            <!--<ul class="list-group">-->
+                <!--<li class="list-group-item">-->
+                    <!--<input type="checkbox" class="pull-left checkbox">-->
+                    <!--<img src="../image/shopbig_07.png" alt="">-->
+                    <!--<p class="pull-right describe">超牛逼红酒,法国原装进口珍藏多年,波尔多AOC红葡萄酒整箱6支装....</p>-->
+                    <!--<select name="shop-cart-number" class="pull-right">-->
+                        <!--<option value="1">1</option>-->
+                        <!--<option value="2">2</option>-->
+                        <!--<option value="3">3</option>-->
+                    <!--</select>-->
+                    <!--<p class="price pull-left">¥<span>299.00</span></p>-->
+                    <!--<p class="bianjiAdd">-->
+                        <!--<i class="iconfont icon-iconfontsvg14"></i>-->
+                        <!--<i class="iconfont icon-lajixiang"></i>-->
+                    <!--</p>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    </div>
+    <div class="end">
+        <p>没有更多了</p></div>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <input type="checkbox" class="pull-left">
+            <span class="pull-left all-choose">全选</span>
+            <a href="order.html">
+                <div class="pull-right set">
+                    <p>结算</p>
+                </div>
+            </a>
+            <p class="pull-right zongji">总计: <span></span>不含运费</p>
+            <p class="pull-right youhui">已优惠: <span>¥200.00</span></p>
+        </div>
+    </nav>
+</div>
+</body>
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="../js/angular.min.js"></script>
+<script src="../js/angular-route.min.js"></script>
+
+<script src="../js/bootstrap.js"></script>
+<script>
+    console.log(localStorage.getItem("thisname"))
+
+</script>
+<script type="text/javascript">
+    function load() {
+        //点击收货地址管理,获取数据库中所有数据
+        $.ajax({
+            type: "get",
+            async: false,
+            url: "http://127.0.0.1:4500/getShopCart",
+            dataType: "jsonp",
+            jsonp: "callback",
+            success: function (result) {
+                console.log(result);
+                //生成结构
+                for(var i = 0; i < result.length; i++){
+
+                    var bigDiv = $("<div>").appendTo($(".shopcart-select"));
+                    var topDiv = $("<div>").addClass("caozuo").appendTo($(bigDiv));
+                    $("<input>").addClass("pull-left checkbox").attr("type", "checkbox").appendTo($(topDiv));
+
+                    $("<p>").addClass("shopname pull-left").text(result[i].shop).appendTo($(topDiv));
+                    $("<p>").addClass("pull-right bianji").text("编辑").appendTo($(topDiv));
+
+                    for(var j = 0; j < result[i].shopCart.length; j++){
+                        var ul = $("<ul>").addClass("list-group").appendTo($(bigDiv));
+                        var li = $("<li>").addClass("list-group-item").appendTo($(ul));
+
+                        $("<input>").addClass("pull-left checkbox").attr("type", "checkbox").appendTo($(li));
+                        $("<img>").attr("src", "../" + result[i].shopCart[j].src).appendTo($(li));
+                        $("<p>").addClass("pull-right describe").text(result[i].shopCart[j].name).appendTo($(li));
+
+                        $("<input>").addClass("pull-right shuru").val(result[i].shopCart[j].number).appendTo($(li));
+                        var p1 = $("<p>").addClass("price pull-left").text("¥").appendTo($(li));
+                        $("<span>").text(result[i].shopCart[j].price).appendTo($(p1));
+
+                        var p2 = $("<p>").addClass("bianjiAdd").appendTo($(li));
+                        $("<i>").addClass("iconfont icon-iconfontsvg14").appendTo($(p2));
+                        $("<i>").addClass("iconfont icon-lajixiang").appendTo($(p2));
+
+                        $(".container input").on("click",function(){
+                            if($(this).prop("checked")){
+                                //attr() 方法设置或返回被选元素的属性值。
+                                // 这里用class选择器因为有多个选择框
+                                $("[type='checkbox']").attr("checked",'true');//全选
+                                $(".zongji span").text("¥" + 1000);
+                            }else{
+                                $("[type='checkbox']").removeAttr("checked");//取消全选
+                                $(".zongji span").text("");
+                            }
+
+                            //点击时获取所点击的具体数据
+                            if (!window.localStorage) {
+                                alert("浏览器支持");
+                            } else {
+                                var stoShopCart = window.localStorage;
+                                //写入字段
+                                stoShopCart.setItem("number", 4);
+                                stoShopCart.setItem("count", 1000);
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    }
+</script>

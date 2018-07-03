@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="wineapp">
+<head>
+    <meta charset="UTF-8">
+    <title>search</title>
+    <meta name="viewport"  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_418111_wcvrt01v7xgh9f6r.css">
+    <style type="text/css">
+        html,body {
+            width: 100%;
+            height: 100%;
+        }
+        #container {
+            width: 100%;
+            height: 100%;
+            background-color: rgb(246,246,246);
+        }
+        .search-top {
+            width: 100%;
+            height: 10%;
+            background-color: rgb(242,242,242);
+            position: fixed;
+            top:0;
+            left:0;
+            z-index: 10;
+        }
+        .icon-zuoyoujiantou {
+            float: left;
+            margin: 6% 0 5% 5%;
+            font-size: 2rem;
+        }
+        .form-group {
+            width: 60%;
+            margin: 0;
+            float: left;
+            margin: 5% 0 5% 8%;
+        }
+        .form-control {
+            padding-left: 17%;
+        }
+        .search-top-fenlei {
+            float: right;
+            font-size: 1.7rem;
+            height: 50%;
+            margin-right: 5%;
+            margin-top: 5%;
+            border:none;
+            background-color: rgb(242,242,242);
+            border-radius: 0.5rem;
+            color: darkgray;
+        }
+        .icon-sousuo {
+            position: absolute;
+            top:38%;
+            left:20%;
+            color: darkgray;
+        }
+        .search-content {
+            margin-top: 15%;
+            width: 100%;
+            height: 90%;
+            /*display: none;*/
+        }
+        .search-content .logo {
+            width: 100%;
+            height: 20%;
+        }
+        .search-goods-list {
+            list-style: none;
+            width: 100%;
+            padding-left: 0;
+        }
+        .search-goods-list li {
+            float: left;
+            width: 46%;
+            color: darkgray;
+            background-color: white;
+            margin: 2%;
+        }
+        .search-goods-list li img {
+            width: 100%;
+        }
+        .search-goods-list li p {
+            padding-left: 3%;
+        }
+        .search-price {
+            color: red;
+            font-size: 1.7rem;
+        }
+        .search-nomore {
+            width: 100%;
+            height: 10%;
+            background-color: rgb(242,242,242);
+            padding: 5%;
+            line-height: 100%;
+            float: left;
+            padding-left: 40%;
+            margin: 0;
+        }
+        .hid {
+            width: 100%;
+            height: 100%;
+            background-color: rgb(29,31,35);
+            margin-top: 18%;
+            position: absolute;
+            top:0;
+            right:-100%;
+        }
+        hr {
+            margin: 0;
+        }
+        .hid .all-list {
+            width: 50%;
+            font-size: 1.8rem;
+            color: white;
+            padding: 2% 5%;
+            margin: 0;
+            opacity: 0.9;
+        }
+        .hid .hid-back {
+            width: 50%;
+            font-size: 1.8rem;
+            color: white;
+            padding: 2% 5%;
+            margin: 0;
+            opacity: 0.9;
+            z-index: 10;
+        }
+        .title {
+            width: 100%;
+            font-size: 1.8rem;
+            color: white;
+            padding: 2% 2% 0;
+            margin: 0;
+            opacity: 0.9;
+            height: 7%;
+            background-color: rgb(29,31,35);
+            overflow: hidden;
+            border-top: 1px solid white;
+        }
+        .list-content {
+            background-color: rgb(29,31,35);
+            margin-bottom: 0;
+        }
+        .list-content li {
+            list-style: none;
+            width: 100%;
+            font-size: 1.8rem;
+            color: white;
+            padding: 2% 5%;
+            margin: 0;
+            opacity: 0.5;
+        }
+        .title .iconfont {
+            color: white;
+            width: 10%;
+            height: 10%;
+            padding-right: 35%;
+        }
+        .putaoTitle .icon-you {
+            display: none;
+        }
+        .jiugui,.pijiu,.baijiu,.taocan,.yangjiu {
+            display: none;
+        }
+        .jiuguiTitle .icon-icon,.pijiuTitle .icon-icon,.baijiuTitle .icon-icon,.taocanTitle .icon-icon,.yangjiuTitle .icon-icon {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="container" ng-controller="WineBar">
+        <div class="search-top">
+            <i class="iconfont icon-zuoyoujiantou" onclick="javascript:history.back()"></i>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="搜索店铺内商品">
+                <i class="iconfont icon-sousuo"></i>
+            </div>
+            <button class="search-top-fenlei">分类</button>
+        </div>
+        <div class="search-content">
+            <a href="shop-detail.html">
+                <img src="../image/shopbig_02.png" alt="" class="logo">
+            </a>
+            <ul class="search-goods-list">
+                <li ng-repeat="x in allWine" ng-click="getID(x._id)">
+                    <a href="ShopHome.html">
+                        <img  src= {{x.url}} alt="">
+                        <p id="thisName">{{x.name}}</p>
+                        <p>{{x.detail}}</p>
+                        <p class="search-price">¥{{x.price}}</p>
+                    </a>
+                </li>
+            </ul>
+            <div class="search-foot">
+                <p class="search-nomore">没有更多了...</p>
+            </div>
+        </div>
+        <div class="hid">
+            <p class="all-list pull-left">全部分类</p>
+            <p class="hid-back pull-right">返回</p>
+            <div class="title putaoTitle">
+                <span class="pull-left">葡萄酒</span>
+                <i class="iconfont icon-you pull-right"></i>
+                <i class="iconfont icon-icon pull-right"></i>
+            </div>
+            <ul class="list-content putao">
+                <li>甜白葡萄酒</li>
+                <hr>
+                <li>名庄</li>
+                <hr>
+                <li>桃红葡萄酒</li>
+                <hr>
+                <li>香槟/起泡酒</li>
+                <hr>
+                <li>白葡萄酒</li>
+                <hr>
+                <li>红葡萄酒</li>
+
+            </ul>
+            <hr>
+            <div class="title jiuguiTitle">
+                <span class="pull-left">酒柜套装</span>
+                <i class="iconfont icon-you pull-right"></i>
+                <i class="iconfont icon-icon pull-right"></i>
+            </div>
+            <ul class="list-content jiugui">
+                <li>甜白葡萄酒</li>
+                <hr>
+                <li>名庄</li>
+                <hr>
+                <li>桃红葡萄酒</li>
+                <hr>
+                <li>香槟/起泡酒</li>
+                <hr>
+                <li>白葡萄酒</li>
+                <hr>
+                <li>红葡萄酒</li>
+                <hr>
+            </ul>
+            <div class="title pijiuTitle">
+                <span class="pull-left">啤酒</span>
+                <i class="iconfont icon-you pull-right"></i>
+                <i class="iconfont icon-icon pull-right"></i>
+            </div>
+            <ul class="list-content pijiu">
+                <li>甜白葡萄酒</li>
+                <hr>
+                <li>名庄</li>
+                <hr>
+                <li>桃红葡萄酒</li>
+                <hr>
+                <li>香槟/起泡酒</li>
+                <hr>
+                <li>白葡萄酒</li>
+                <hr>
+                <li>红葡萄酒</li>
+            </ul>
+            <div class="title baijiuTitle">
+                <span class="pull-left">中国白酒</span>
+                <i class="iconfont icon-you pull-right"></i>
+                <i class="iconfont icon-icon pull-right"></i>
+            </div>
+            <ul class="list-content baijiu">
+                <li>甜白葡萄酒</li>
+                <hr>
+                <li>名庄</li>
+                <hr>
+                <li>桃红葡萄酒</li>
+                <hr>
+                <li>香槟/起泡酒</li>
+                <hr>
+                <li>白葡萄酒</li>
+                <hr>
+                <li>红葡萄酒</li>
+                <hr>
+            </ul>
+            <div class="title taocanTitle">
+                <span class="pull-left">多支套餐</span>
+                <i class="iconfont icon-you pull-right"></i>
+                <i class="iconfont icon-icon pull-right"></i>
+            </div>
+            <ul class="list-content taocan">
+                <li>甜白葡萄酒</li>
+                <hr>
+                <li>名庄</li>
+                <hr>
+                <li>桃红葡萄酒</li>
+                <hr>
+                <li>香槟/起泡酒</li>
+                <hr>
+                <li>白葡萄酒</li>
+                <hr>
+                <li>红葡萄酒</li>
+                <hr>
+            </ul>
+            <div class="title yangjiuTitle">
+                <span class="pull-left">洋酒烈酒</span>
+                <i class="iconfont icon-you pull-right"></i>
+                <i class="iconfont icon-icon pull-right"></i>
+            </div>
+            <ul class="list-content yangjiu">
+                <li>甜白葡萄酒</li>
+                <hr>
+                <li>名庄</li>
+                <hr>
+                <li>桃红葡萄酒</li>
+                <hr>
+                <li>香槟/起泡酒</li>
+                <hr>
+                <li>白葡萄酒</li>
+                <hr>
+                <li>红葡萄酒</li>
+                <hr>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="../js/angular.min.js"></script>
+<script src="../js/angular-route.min.js"></script>
+<script src="../js/bootstrap.js"></script>
+<script>
+    $(".search-top-fenlei").click(function () {
+        $(".hid").css("transform", "translateX(-75%)");
+        $(".search-content").css("transform", "translateX(-60%)");
+        $(".icon-you").click(function () {
+            $(".icon-you").each(function (i,e) {
+                $(".icon-you").parent().next().css("display", "none");
+            });
+            $(this).parent().next().css("display","block");
+            $(this).next().css("display", "block");
+            $(this).css("display", "none");
+        });
+        $(".icon-icon").click(function () {
+            $(".icon-icon").each(function (i,e) {
+                $(".icon-you").parent().next().css("display", "none");
+            });
+            $(this).css("display", "none");
+            $(this).prev().css("display", "block");
+        });
+
+    });
+
+    $(".hid-back").click(function () {
+        $(".hid").css("transform", "translateX(75%)");
+        $(".search-content").css("transform", "translateX(0)");
+    });
+
+// localStorage
+//    console.log( JSON.parse(localStorage.getItem("wineBar")))
+    var wineBar = JSON.parse(localStorage.getItem("wineBar"));
+    var app = angular.module("wineapp",[]);
+    var thisID
+    app.controller("WineBar",function ($scope) {
+        $scope.allWine = wineBar
+        $scope.getID = function (id) {
+            thisID = id;
+//            console.log(id)
+            localStorage.setItem("thisID",thisID)
+//            console.log( localStorage.getItem("thisID"))
+        }
+
+
+
+    })
+
+
+
+</script>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/basebetter.css">
+</head>
+<body>
+    <div class="shopMethod">
+        <div class="NewpeiHeader">
+            <a href="###" onclick="javascript:history.back()"><img src="../img/分类.左箭头.png"  class="NewpeiArrows"></a>
+            <span class="NewpeiSpan">选择配送方式</span>
+        </div>
+        <div class="shopTime">
+            <p>配送时间</p>
+            <div>工作日送货</div>
+            <div>双休/节假日送货</div>
+            <div>时间不限</div>
+        </div>
+        <div class="shopmethod">
+            <p>配送方式</p>
+            <p>由[国美在线]配送3件商品</p>
+            <div class="shopImg">
+                <img src="../img/赠送3件套.png" alt="">
+                <img src="../img/赠送三件套2.png" alt="">
+                <img src="../img/赠送三件套3.png" alt="">
+            </div>
+            <a href="###"><div class="threeMethod threeMethod1">快递</div></a>
+            <a href="###"><div class="threeMethod">平邮</div></a>
+            <a href="###"><div class="threeMethod">邮政</div></a>
+        </div>
+        <div class="shopMethodFoot">
+            <button class="shopMethodBtn">确定</button>
+        </div>
+    </div>
+</body>
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(".shopTime div").click(function () {
+        $(".shopTime div").each(function (i,e) {
+            $(e).css("borderColor", "gray");
+        })
+        $(this).css("borderColor", "red");
+        localStorage.setItem("songTime", $(this).text());
+        console.log($(this).text());
+    })
+
+    $(".threeMethod").click(function () {
+        $(".threeMethod").each(function (i,e) {
+            $(e).css("borderColor", "gray");
+        })
+        $(this).css("borderColor", "red");
+        localStorage.setItem("songStyle", $(this).text());
+        console.log($(this).text());
+    })
+
+    $(".shopMethodBtn").click(function () {
+        window.location.href = "order.html";
+    })
+</script>

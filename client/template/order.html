@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>填写订单</title>
+    <meta name="viewport"  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_418111_qxxq6ou219n3ik9.css">
+    <style type="text/css">
+        html,body {
+            width: 100%;
+            height: 100%;
+        }
+        #order-container {
+            width: 100%;
+            height: 100%;
+            background-color: rgb(244,244,244);
+        }
+        .order-head {
+            width: 100%;
+            height: 8%;
+            background-color: rgb(242,242,242);
+            border-bottom: 2px solid;
+            border-color: gainsboro;
+        }
+        .order-head .icon-zuoyoujiantou {
+            font-size: 2.4rem;
+            padding-left: 3%;
+            padding-top: 3%;
+        }
+        .order-head p {
+            margin-top: 4%;
+            width: 80%;
+            padding-right: 25%;
+            float: right;
+            text-align: center;
+            font-size: 2rem;
+        }
+        .order-address {
+            width: 100%;
+            height: 13%;
+            background-color: white;
+            position: relative;
+        }
+        .order-address p {
+            height: 100%;
+            margin: 0;
+            padding: 8% 0 0 5%;
+            font-size: 1.7rem;
+            color: darkgray;
+            font-weight: 100;
+        }
+        #order-container .icon-you {
+            padding: 8% 5% 0 0;
+            opacity: 0.7;
+        }
+        .order-address img {
+            position: absolute;
+            bottom: 0;
+        }
+        .order-goods {
+            width: 100%;
+            height: 12%;
+            margin-top: 2%;
+            background-color: white;
+        }
+        .order-goods img {
+            width: 20%;
+            padding-top: 2%;
+        }
+        .order-goods p {
+            width: 15%;
+            padding: 8% 3% 0 0;
+            font-size: 1.7rem;
+            color: gray;
+            font-weight: 100;
+        }
+        .order-pay {
+            width: 100%;
+            height: 10%;
+            background-color: white;
+            margin-top: 3%;
+            border-bottom: 1px solid gainsboro;
+        }
+        .order-pay p {
+            padding: 6% 0 0 3%;
+            font-size: 1.7rem;
+            color: gray;
+            font-weight: 100;
+        }
+        .order-pay span {
+            font-size: 1.7rem;
+            color: gray;
+            font-weight: 100;
+            padding: 6% 5% 0 0 ;
+        }
+        #order-container .order-pay .icon-you {
+            padding-top: 6%;
+        }
+        .order-song,.order-piao {
+            width: 100%;
+            height: 13%;
+            background-color: white;
+            border-bottom: 1px solid gainsboro;
+        }
+        .order-piao {
+            border:none;
+        }
+        .order-song p, .order-piao p{
+            padding: 8% 0 0 3%;
+            font-size: 1.7rem;
+            color: gray;
+            font-weight: 100;
+        }
+        .order-song span,.order-piao span{
+            width: 23%;
+            padding: 5% 4% 0 0;
+            font-size: 1.7rem;
+            color: gray;
+            font-weight: 100;
+        }
+        #order-container .order-song .icon-you, #order-container .order-piao .icon-you{
+            padding-top: 8%;
+        }
+        .order-beizhu {
+            width: 100%;
+            height: 13%;
+            background-color: white;
+            margin-top: 2%;
+        }
+        .order-beizhu p {
+            padding: 2% 0 0 3%;
+            font-size: 1.7rem;
+            color: gray;
+            font-weight: 100;
+        }
+        .order-beizhu input {
+            margin: 8% 0 0 5%;
+            font-size: 1.7rem;
+            color: gray;
+            font-weight: 100;
+            padding: 3% 5%;
+            border: 1px solid gainsboro;
+        }
+        .order-total {
+            width: 100%;
+            height: 12%;
+            background-color: white;
+            margin-top: 2%;
+        }
+        .order-total p {
+            width: 100%;
+            height: 50%;
+            margin: 0;
+            font-size: 1.7rem;
+            color: gray;
+            font-weight: 100;
+        }
+        .order-total .p1 {
+            padding: 4% 5%;
+        }
+        .order-total .p2 {
+            padding: 1% 5%;
+        }
+        .order-total p span:nth-child(2){
+            color: #000;
+            font-weight: 200;
+        }
+        .order-submit {
+            width: 100%;
+            height: 10%;
+            background-color: white;
+            margin-top: 2%;
+        }
+        .order-submit p {
+            width: 50%;
+            height: 50%;
+            margin: 0;
+            font-size: 1.7rem;
+            color: gray;
+            font-weight: 300;
+            padding: 5% 0 0 5%;
+        }
+        .order-submit .submitDiv {
+            width: 40%;
+            height: 100%;
+            background-color: rgb(192,27,55);
+            font-size: 1.7rem;
+            line-height: 5rem;
+            text-align: center;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="order-container">
+        <div class="order-head">
+            <i class="iconfont icon-zuoyoujiantou pull-left" onclick="javascript:history.back()"></i>
+            <p>填写订单</p>
+        </div>
+        <div class="order-address">
+            <p class="pull-left addText">地址</p>
+            <a href="REIPT.html">
+                <i class="iconfont icon-you pull-right"></i>
+            </a>
+            <img src="../image/order-line_02.png" alt="">
+        </div>
+        <div class="order-goods">
+            <img src="../image/order-jiu_07.png" alt="">
+            <img src="../image/order-jius_06.png" alt="">
+            <a href="">
+                <i class="iconfont icon-you pull-right"></i>
+            </a>
+            <p class="pull-right">共<span></span>件</p>
+
+        </div>
+        <div class="order-pay">
+            <p class="pull-left">支付方式</p>
+            <a href="">
+                <i class="iconfont icon-you pull-right"></i>
+            </a>
+            <span class="pull-right">在线支付</span>
+
+        </div>
+        <div class="order-song">
+            <p class="pull-left">配送方式</p>
+            <a href="shopMethod.html">
+                <i class="iconfont icon-you pull-right"></i>
+            </a>
+            <span class="pull-right">普通快递时间不限</span>
+        </div>
+        <div class="order-piao">
+            <p class="pull-left">发票信息</p>
+            <a href="receipt.html">
+                <i class="iconfont icon-you pull-right"></i>
+            </a>
+
+            <span class="pull-right"></span>
+        </div>
+        <div class="order-beizhu">
+            <p class="pull-left">备注</p>
+            <input type="text" placeholder="45字以内">
+        </div>
+        <div class="order-total">
+            <p class="p1">
+                <span class="pull-left">商品总计</span>
+                <span class="pull-right">¥195.00</span>
+            </p>
+            <p class="p2">
+                <span class="pull-left">运费</span>
+                <span class="pull-right">¥5.00</span>
+            </p>
+        </div>
+        <div class="order-submit">
+            <a href="PayOrder.html">
+                <div class="submitDiv pull-right">提交订单</div>
+            </a>
+            <p class="pull-right">
+                应付金额:<span>¥200.00</span>
+            </p>
+
+        </div>
+    </div>
+</body>
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="../js/angular.min.js"></script>
+<script src="../js/angular-route.min.js"></script>
+<script src="../js/bootstrap.js"></script>
+<script type="text/javascript">
+//    console.log(stoShopCart);
+    console.log(window.localStorage);
+    $(".order-goods p span").text(localStorage.getItem("number"));
+    $(".addText").text(localStorage.getItem("bigArea"));
+    $(".order-song span").text(localStorage.getItem("songTime") + localStorage.getItem("songStyle"));
+    $(".order-piao span").text(localStorage.getItem("receType"));
+
+    localStorage.setItem("PayMoney", $(".order-submit p span").text())
+</script>

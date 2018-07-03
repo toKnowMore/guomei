@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"   content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+    <title>Title</title>
+    <style type="text/css">
+        .icon {
+            width: 1em; height: 1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+    </style>
+    <link rel="stylesheet" href="../css/basebetter.css">
+</head>
+<body>
+    <div class="ShopHome" ng-controller="WineBar">
+        <div class="NewpeiHeader">
+            <a href="###" onclick="javascript:history.back()"><img src="../img/分类.左箭头.png"  class="NewpeiArrows"></a>
+            <span class="ShopHomeSpan">商品</span>
+            <a href="Describe.html"><span class="ShopHomeSpan">详情</span></a>
+            <a href="ShopHome.html">
+                <span class="ShopHomeSpan">评价</span>
+            </a>
+            <img  src="../img/分享.png" class="ShopHomeImg" alt="">
+        </div>
+        <img src={{thisOne.url}} class="ShopHomeBImg" alt="">
+        <div class="ShopHomeContent">
+            <!--<p>{{x.name}}</p>-->
+            <p class="ShopContp1" id="thisName">{{thisOne.name}}</p>
+            <p class="ShopContp2">{{thisOne.detail}}</p>
+            <p class="ShopContp3" id="totlePrice"></p>
+            <div class="ShopContNum">
+                <span>数量</span>
+                <button class="ShopContS1" id="reduceNum">-</button><input type="number" class="ShopContInt1" value="1"><button class="ShopContS1" id="addNum">+</button>
+            </div>
+            <a href="ShopAssess.html">
+                <div class="ShopContComment">
+                    <span>评价(1333)</span> <span class="ShopContS2">好评度:98% </span><span>></span>
+                    <div class="ShopcontCom">
+                        <img src="../img/ShopHome头像.png" alt=""><span>齐***疯</span><img src="../img/评价星星.png" alt=""><br>
+                        <p>忠实的酒粉,国产就是好,国美发货压块,快递员服务态度超好,醉倒显示良好</p>
+                        <p class="CommentP">颜色:银灰 版本:全网通</p>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+        <a href="shop-detail.html">
+            <div class="Tianwo">
+                <img src="../img/天喔Logo.png" class="tianwoLogo" alt="">
+                <img src="../img/天喔专营店.png" class="tianwoStore" alt="">
+                <img src="../img/ShopHome右箭头.png" class="tianwoRpoint"alt="">
+            </div>
+        </a>
+        <p class="tianwoSer">联系客服</p>
+        <a href="search.html"><p class="tianwoSer">进入店铺</p></a>
+        <a href="Describe.html"><p class="LookCare">查看全部图文详情 <span> ></span></p></a>
+        <div class="ShopHomeFoot">
+            <svg class="icon ShopHoLogo1" ng-click="changeCOLO(thisOne._id)" aria-hidden="true">
+                <use xlink:href="#icon-shoucang"></use>
+            </svg>
+            <svg class="icon ShopHoLogo2" aria-hidden="true">
+                <use xlink:href="#icon-gouwuche"></use>
+            </svg>
+            <!--<span class="ShopHomeS2">购物车</span>-->
+            <!--<a href="shoppingCart.html"><img src="../img/购物车.png" class="ShopHoLogo2" alt=""></a>-->
+            <img src="../img/立即购买.png" class="ShopHoLogo4" alt="">
+            <img src="../img/加入购物车.png" class="ShopHoLogo3" id="Adshopcar">
+        </div>
+    </div>
+</body>
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="../js/angular.min.js"></script>
+<script src="//at.alicdn.com/t/font_418117_422xzkmj4kuik9.js"></script>
+<script>
+
+    var wineBarID = localStorage.getItem("thisID");
+    //控制器绑定值
+    var app = angular.module("app",[]);
+    var thenval = 1;
+
+    app.controller("WineBar",function ($scope,$http) {
+
+        $http.jsonp("http://127.0.0.1:5679/IFShouCang?callback=JSON_CALLBACK&_id="+wineBarID).success(function (res) {
+            if(res == "已收藏"){
+                res = true;
+            }else {
+                res = false;
+            }
+//            $scope.coloval = res;
+            res ? $(".ShopHoLogo1").css("color","red") :  $(".ShopHoLogo1").css("color","black");
+            //点击变色 加入收藏
+            $scope.changeCOLO = function (id) {
+                var _id = id;
+                res = !res;
+                console.log(res)
+                res? $(".ShopHoLogo1").css("color","red") :  $(".ShopHoLogo1").css("color","black");
+                $http.jsonp("http://127.0.0.1:5679/ShouCang?callback=JSON_CALLBACK&_id="+_id+"&coloval="+res).success(function(res){
+                    console.log(res)
+                }).error(function () {})
+            }
+
+        }).error(function () {})
+
+    //拿到ID找数据
+        $http.jsonp("http://127.0.0.1:5678/THISID?callback=JSON_CALLBACK&_id="+wineBarID).success(function (res) {
+             $scope.thisOne = res[0]
+//            console.log($scope.thisOne)
+            $("#totlePrice").text("¥"+ (thenval * $scope.thisOne.price)+".00")
+            $("#reduceNum").click(function () {
+                if ($(".ShopContNum input").val() == 0){
+                    $(".ShopContNum input").val(1)
+                }
+                thenval = $(".ShopContNum input").val()-1;
+                $(".ShopContNum input").val(thenval)
+                $("#totlePrice").text("¥"+ (thenval * $scope.thisOne.price)+".00")
+            })
+            $("#addNum").click(function () {
+                thenval = $(".ShopContNum input").val()-(-1);
+                $(".ShopContNum input").val(thenval)
+                $("#totlePrice").text("¥"+ (thenval * $scope.thisOne.price)+".00")
+            })
+        }).error(function (err) {
+        })
+        //判断是否被收藏
+
+
+
+    })
+
+
+</script>
+
+

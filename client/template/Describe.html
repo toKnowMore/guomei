@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>商品描述</title>
+    <link rel="stylesheet" href="../css/basebetter.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_418111_wcvrt01v7xgh9f6r.css">
+</head>
+<body>
+<div class="Describe">
+    <div class="NewpeiHeader">
+        <a href="###"><img src="../img/分类.左箭头.png"  class="NewpeiArrows" onclick="javascript:history.back()"></a>
+        <span class="NewpeiSpan">商品描述</span>
+    </div>
+    <div class="Descontent">
+        <div class="goods-jieshao">商品介绍</div>
+        <div class="goods-guige">规格参数</div>
+        <ul class="DescontUl">
+            <li>香型: 酱香型</li>
+            <li>品牌: 茅台</li>
+            <li>产地: 贵州</li>
+            <li>规格: 500ml</li>
+            <li>包装: 单瓶</li>
+            <li>价格: 700-1990</li>
+            <li>原材料: 高粱,小麦,水</li>
+            <li>酒精度: 53%</li>
+        </ul>
+        <img src="../img/商品介绍.png" alt="" class="DesIntroduction">
+    </div>
+    <div class="ShopHomeFoot">
+        <div class="ShopHomeFoot-shoucang">
+            <i class="iconfont icon-iconfontsvg14"></i>
+            <p>收藏</p>
+        </div>
+        <a href="shoppingCart.html">
+            <img src="../img/购物车.png" class="ShopHoLogo2" alt="">
+        </a>
+        <img src="../img/加入购物车.png" class="ShopHoLogo3" alt="">
+        <a href="order.html">
+            <img src="../img/立即购买.png" class="ShopHoLogo4" alt="">
+        </a>
+    </div>
+</div>
+</body>
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    $(".goods-jieshao").click(function () {
+        $(".goods-guige").css("backgroundColor", "white");
+        $(".goods-jieshao").css("backgroundColor", "rgb(230,230,230)");
+        $(".DescontUl").css("display", "none");
+    })
+    $(".goods-guige").click(function () {
+       $(".goods-guige").css("backgroundColor", "rgb(230,230,230)");
+       $(".goods-jieshao").css("backgroundColor", "white");
+       $(".DescontUl").css("display", "block");
+    });
+
+    $(".icon-iconfontsvg14").click(function () {
+        $(".icon-iconfontsvg14").css("color", "red");
+        $(".icon-iconfontsvg14").next().css("color","red");
+    })
+</script>
